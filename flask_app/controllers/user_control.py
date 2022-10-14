@@ -50,8 +50,8 @@ def register_and_login_process():
             "email" : request.form["email"],
             "password" : request.form["password"]
         }
-        if not User.validate_email(data):
-            return redirect('/')
+        # if not User.validate_email(data):
+        #     return redirect('/')
         # user_pwd_in_db = User.get_pwd_by_email(data['email'])
         # # print('this is pwd_db______________', user_pwd_in_db)
         # if not bcrypt.check_password_hash(user_pwd_in_db['password'], data['password']):
