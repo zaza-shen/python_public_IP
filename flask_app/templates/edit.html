@@ -23,28 +23,28 @@
 
     <form action="/edit_process" method="post">
         <div class="mb-3">
-            <input type="hidden" name="r_id" value="{{r_id}}">
+            <input type="hidden" name="r_id" value="{{show_detail.id}}">
         </div>
         <div class="mb-3">
             <label for="Titil" class="form-label">Titil</label>
-            <input type="text" class="form-control" id="Titil" name="title">
+            <input type="text" class="form-control" id="Titil" name="title" value="{{show_detail.title}}">
         </div>
         <div class="mb-3">
             <label for="Network" class="form-label">Network</label>
-            <input type="text" class="form-control" id="Network" name="network">
+            <input type="text" class="form-control" id="Network" name="network" value="{{show_detail.network}}">
         </div>
         <div class="mb-3">
             <label for="Description" class="form-label">Description</label>
-            <textarea class="form-control" id="Description" rows="3" name="descr"></textarea>
+            <textarea class="form-control" id="Description" rows="3" name="descr">{{show_detail.descr}}</textarea>
         </div>
 
         <div>
             <span>Release Date</span>
-            <input type="date" id="release_date" name="release_date">
+            <input type="date" id="release_date" name="release_date" value="{{show_detail.release_date}}">
         </div>
 
         
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-primary">Update</button>
     </form>
 
 

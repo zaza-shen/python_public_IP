@@ -41,7 +41,14 @@ def addShow():
 #edit show
 @app.route('/shows/edit/<int:r_id>')
 def editShow(r_id):
-    return render_template('edit.html',r_id = r_id)
+    if not session:
+        return render_template('alert.html')
+    data = {
+        'id' : r_id
+    }
+    show_detail = Show.get_one(data)
+    # print('-----------',show_detail)
+    return render_template('edit.html',show_detail = show_detail)
 @app.route("/edit_process", methods=['POST'])
 def editShow1():
     # print(request.form["title"],'______________')

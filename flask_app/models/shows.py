@@ -18,6 +18,9 @@ class Show:
         if len(show['title'])<3:
             flash("The name cannot be shorter than 3.")
             is_valid = False
+        if len(show['network'])<3:
+            flash("The Network cannot be shorter than 3.")
+            is_valid = False
         if len(show['descr'])<3:
             flash("The description cannot be shorter than 3.")
             is_valid = False
@@ -56,7 +59,7 @@ class Show:
     
     @classmethod
     def delete(cls, data):
-        print('-----------thisis delete',data)
+        # print('-----------thisis delete',data)
         query = "DELETE FROM likes WHERE show_id = %(id)s"
         connectToMySQL("tv_shows_schema").query_db(query, data)
         query = "DELETE FROM shows WHERE id = %(id)s"

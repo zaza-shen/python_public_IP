@@ -39,13 +39,9 @@
                 {% else %}
                 <td><a href="/shows/{{show.id}}">Show</a></td>
                 {% endif %}
-                <!-- {% if user.id == show.liker_id %}
-                <td><a href="/unlike/{{user.id}}/{{show.id}}">Unlike</a></td>
-                {% else %}
-                <td><a href="/like/{{user.id}}/{{show.id}}">Like!</a></td>
-                {% endif %} -->
-                <td>
-                    {% if user.id == show.liker_id %}
+                <td>{% if user.id == show.user_id %}
+                    <br>
+                    {% elif user.id == show.liker_id %}
                     <a href="/unlike/{{user.id}}/{{show.id}}">Unlike</a>
                     {% else %}
                     <a href="/like/{{user.id}}/{{show.id}}">Like!</a>
