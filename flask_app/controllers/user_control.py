@@ -59,7 +59,7 @@ def register_and_login_process():
         #     return redirect('/')
         # session['id'] = User.validate_email(data)['id']
         # return redirect("/shows")
-        return redirect("/")
+        return render_template('alert.html')
 
 #TO Unlike
 @app.route('/unlike/<int:user_id>/<int:show_id>')
