@@ -22,15 +22,15 @@ class Show:
             flash("The description cannot be shorter than 3.")
             is_valid = False
         if len(show['release_date'])<3:
-            flash("The release_dateuction cannot be shorter than 3.")
+            flash("The release date cannot be empty.")
             is_valid = False
         return is_valid
         
 
     @classmethod
-    def get_all_shows(cls):
-        query = "SELECT id, title, network, release_date, descr,shows.user_id, b.user_id AS liker_id, shows.created_at, shows.updated_at FROM tv_shows_schema.shows LEFT JOIN (SELECT * FROM likes WHERE likes.user_id = 2) AS b ON shows.id = b.show_id;"
-        results = connectToMySQL('tv_shows_schema').query_db(query)
+    def get_all_shows(cls, data):
+        query = "SELECT id, title, network, release_date, descr,shows.user_id, b.user_id AS liker_id, shows.created_at, shows.updated_at FROM tv_shows_schema.shows LEFT JOIN (SELECT * FROM likes WHERE likes.user_id = %(id)s) AS b ON shows.id = b.show_id;"
+        results = connectToMySQL('tv_shows_schema').query_db(query, data)
         shows = []
         for show in results:
             shows.append(show)
