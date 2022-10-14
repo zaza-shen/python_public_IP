@@ -25,7 +25,7 @@ def addDojo():
     data = {'id' : session['id']}
     user = User.get_one(data)
     print('--------------------', user['id'])
-    return render_template("dashboard.html",user=user, allShows = Show.get_all_shows())
+    return render_template("dashboard.html",user=user, allShows = Show.get_all_shows(data))
 @app.route("/index_process", methods = ["POST"])
 def create_users():
     if request.form["formName"] == "regis_form":
