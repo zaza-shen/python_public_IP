@@ -6,7 +6,7 @@ from flask_app.controllers import shows_control
 from flask_bcrypt import Bcrypt        
 bcrypt = Bcrypt(app)
 
-
+#Redirect to Index need session being clear
 @app.route("/session_clear")
 def index_bef():
     session.clear()
@@ -17,17 +17,19 @@ def index_bef():
 def index():
     return render_template("index.html")
 
-#Create User or Login
+#dashboard
 @app.route("/shows")
-def addDojo():
+def go_dashboard():
     if not session:
         return render_template('alert.html')
     data = {'id' : session['id']}
     user = User.get_one(data)
-    print('--------------------', user['id'])
+    # print('--------------------', user['id'])
     return render_template("dashboard.html",user=user, allShows = Show.get_all_shows(data))
+
+#Create User or Login
 @app.route("/index_process", methods = ["POST"])
-def create_users():
+def register_and_login_process():
     if request.form["formName"] == "regis_form":
         data = {
             "first_name" : request.form["first_name"], 
@@ -36,7 +38,7 @@ def create_users():
             "password" : request.form["password"],
             "c_password" : request.form["c_password"]
         }
-        if not User.validate_user(data):
+        if not User.validate_register(data):
             return redirect("/")
         data['password'] = bcrypt.generate_password_hash(data['password'])
         temp_id = User.save(data)

@@ -38,7 +38,7 @@ class Show:
 
     @classmethod
     def save(cls, data):
-        query = "INSERT INTO shows (title, network, descr, release_date, user_id) value (%(title)s, %(network)s, %(descr)s, %(release_date)s, %(user_id)s);"
+        query = "INSERT INTO shows (title, network, descr, release_date, user_id) values (%(title)s, %(network)s, %(descr)s, %(release_date)s, %(user_id)s);"
         return connectToMySQL("tv_shows_schema").query_db(query, data)
 
     @classmethod

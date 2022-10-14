@@ -14,7 +14,7 @@ class User:
         self.updated_at = data['updated_at']
 
     @staticmethod
-    def validate_user( user ):
+    def validate_register( user ):
         is_valid = True
         if len(user["first_name"])<2:
             flash(u"Your first name contains only one character or nothing.", "register")
@@ -88,7 +88,7 @@ class User:
 
     @classmethod
     def save(cls, data):
-        query = "INSERT INTO users (first_name, last_name, email, password) value (%(first_name)s, %(last_name)s, %(email)s, %(password)s);"
+        query = "INSERT INTO users (first_name, last_name, email, password) values (%(first_name)s, %(last_name)s, %(email)s, %(password)s);"
         return connectToMySQL("tv_shows_schema").query_db(query, data)
 
     @classmethod
