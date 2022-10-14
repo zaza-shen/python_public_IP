@@ -28,8 +28,8 @@ class Show:
         
 
     @classmethod
-    def get_all_shows(cls):
-        query = "SELECT id, title, network, release_date, descr,shows.user_id, b.user_id AS liker_id, shows.created_at, shows.updated_at FROM tv_shows_schema.shows LEFT JOIN (SELECT * FROM likes WHERE likes.user_id = 2) AS b ON shows.id = b.show_id;"
+    def get_all_shows(cls, data):
+        query = "SELECT id, title, network, release_date, descr,shows.user_id, b.user_id AS liker_id, shows.created_at, shows.updated_at FROM tv_shows_schema.shows LEFT JOIN (SELECT * FROM likes WHERE likes.user_id = %(id)s) AS b ON shows.id = b.show_id;"
         results = connectToMySQL('tv_shows_schema').query_db(query)
         shows = []
         for show in results:
