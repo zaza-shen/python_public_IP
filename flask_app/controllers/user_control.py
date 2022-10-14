@@ -20,10 +20,10 @@ def index():
 #dashboard
 @app.route("/shows")
 def go_dashboard():
-    if not session:
-        return render_template('alert.html')
-    data = {'id' : session['id']}
-    user = User.get_one(data)
+    # if not session:
+    #     return render_template('alert.html')
+    # data = {'id' : session['id']}
+    # user = User.get_one(data)
     # print('--------------------', user['id'])
     return render_template("dashboard.html",user=user, allShows = Show.get_all_shows(data))
 
