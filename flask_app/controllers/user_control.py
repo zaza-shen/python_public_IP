@@ -50,16 +50,16 @@ def register_and_login_process():
             "email" : request.form["email"],
             "password" : request.form["password"]
         }
-        # if not User.validate_email(data):
-        #     return redirect('/')
-        # user_pwd_in_db = User.get_pwd_by_email(data['email'])
-        # # print('this is pwd_db______________', user_pwd_in_db)
-        # if not bcrypt.check_password_hash(user_pwd_in_db['password'], data['password']):
-        #     flash(u'Your pwd is wrong.', 'login')
-        #     return redirect('/')
-        # session['id'] = User.validate_email(data)['id']
-        # return redirect("/shows")
-        return render_template('alert.html')
+        if not User.validate_email(data):
+            return redirect('/')
+        user_pwd_in_db = User.get_pwd_by_email(data['email'])
+        # print('this is pwd_db______________', user_pwd_in_db)
+        if not bcrypt.check_password_hash(user_pwd_in_db['password'], data['password']):
+            flash(u'Your pwd is wrong.', 'login')
+            return redirect('/')
+        session['id'] = User.validate_email(data)['id']
+        return redirect("/shows")
+        # return render_template('alert.html')
 
 #TO Unlike
 @app.route('/unlike/<int:user_id>/<int:show_id>')
