@@ -20,12 +20,13 @@ def index():
 #dashboard
 @app.route("/shows")
 def go_dashboard():
-    # if not session:
-    #     return render_template('alert.html')
-    # data = {'id' : session['id']}
-    # user = User.get_one(data)
-    # print('--------------------', user['id'])
+    if not session:
+        return render_template('alert.html')
+    data = {'id' : session['id']}
+    user = User.get_one(data)
+    print('--------------------', user['id'])
     return render_template("dashboard.html",user=user, allShows = Show.get_all_shows(data))
+    
 
 #Create User or Login
 @app.route("/index_process", methods = ["POST"])
@@ -57,7 +58,8 @@ def register_and_login_process():
         #     flash(u'Your pwd is wrong.', 'login')
         #     return redirect('/')
         # session['id'] = User.validate_email(data)['id']
-        return redirect("/shows")
+        # return redirect("/shows")
+        return redirect("/")
 
 #TO Unlike
 @app.route('/unlike/<int:user_id>/<int:show_id>')
