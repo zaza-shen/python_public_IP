@@ -56,7 +56,7 @@ def register_and_login_process():
         # if not bcrypt.check_password_hash(user_pwd_in_db['password'], data['password']):
         #     flash(u'Your pwd is wrong.', 'login')
         #     return redirect('/')
-        session['id'] = User.validate_email(data)['id']
+        # session['id'] = User.validate_email(data)['id']
         return redirect("/shows")
 
 #TO Unlike
